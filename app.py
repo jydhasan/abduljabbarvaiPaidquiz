@@ -773,8 +773,12 @@ def home():
         id = ' '.join(row[1] for row in rows)
         id2 = ' '.join(row[2] for row in rows)
         message = "Exam going on "+" /"+id+"/ "+id2+"/"+third_columns
+
+        files = FileUpload.query.all()
+        for file in files:
+            file.image_base64 = base64.b64encode(file.image).decode('utf-8')
         conn.close()
-        return render_template('home_page.html', rows=message)
+        return render_template('home_page.html', rows=message,files=files)
 
 
 # books upload

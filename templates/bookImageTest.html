@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+</head>
+<body>
+    <h1>Welcome to the Home Page</h1>
+
+    {% if rows == 'No exam now' %}
+        <p>{{ rows }}</p>
+        <p>Title: {{ title }}</p>
+        <p>Details: {{ details }}</p>
+    {% else %}
+        <ul>
+            {% for row in rows %}
+                <li>{{ row.question }} - {{ row.answer }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <h2>Files</h2>
+    {% for file in files %}
+        <div>
+            <h3>{{ file.title }}</h3>
+            <p>{{ file.description }}</p>
+            <p>Price: ${{ file.price }}</p>
+            <img src="data:image/jpeg;base64,{{ file.image_base64 }}" alt="{{ file.filename }}">
+        </div>
+    {% endfor %}
+</body>
+</html>
